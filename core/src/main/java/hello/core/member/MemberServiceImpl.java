@@ -1,14 +1,20 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService {
 
-    // DIP 위반
+    // DIP 위반 코드
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
-
 
     private final MemberRepository memberRepository;
 
+    @Autowired // ac.getBean(MemberRepository.class)
+
     public MemberServiceImpl(MemberRepository memberRepository) {
+
         this.memberRepository = memberRepository;
     }
 

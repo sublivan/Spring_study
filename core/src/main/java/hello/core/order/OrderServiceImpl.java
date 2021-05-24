@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
 
     //필드 주입
-    //필드 인젝션은 안쓰는게 좋다. 
+    //필드 인젝션은 안쓰는게 좋다.
 //    @Autowired private MemberRepository memberRepository;
 //    @Autowired private DiscountPolicy discountPolicy;
 

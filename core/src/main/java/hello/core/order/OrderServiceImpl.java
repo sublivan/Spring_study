@@ -1,12 +1,16 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+//@RequiredArgsConstructor //생성자를 만들어준다.
 public class OrderServiceImpl implements OrderService {
 
       // DIP 위반
@@ -16,6 +20,22 @@ public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
+
+    // 생성자 주입
+    @Autowired //생성자가 하나일때는 생략해도 @Component를 통해 의존성주입이된다.
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+    // @Qualifire, 생성자 자동주입
+//    @Autowired
+//    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy
+//            discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
+
 
     //필드 주입
     //필드 인젝션은 안쓰는게 좋다.
@@ -34,12 +54,7 @@ public class OrderServiceImpl implements OrderService {
 //    }
 
 
-    // 생성자 주입
-    @Autowired //생성자가 하나일때는 생략해도 @Component를 통해 의존성주입이된다.
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

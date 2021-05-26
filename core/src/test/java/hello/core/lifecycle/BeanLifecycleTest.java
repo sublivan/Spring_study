@@ -18,6 +18,8 @@ public class BeanLifecycleTest {
     @Configuration
     static class LifeCycleConfig {
 
+       //빈등록 초기화 소멸 메소드
+//        @Bean(initMethod = "init", destroyMethod = "close")
         @Bean
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();

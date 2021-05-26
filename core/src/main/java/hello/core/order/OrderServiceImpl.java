@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
 
     // 생성자 주입
-//    @Autowired //생성자가 하나일때는 생략해도 @Component를 통해 의존성주입이된다.
+    @Autowired //생성자가 하나일때는 생략해도 @Component를 통해 의존성주입이된다.
     public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;

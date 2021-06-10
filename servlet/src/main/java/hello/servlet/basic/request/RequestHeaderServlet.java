@@ -16,9 +16,11 @@ public class RequestHeaderServlet extends HttpServlet {
         printStartLine(request);
         printHeaders(request);
         printHeaderUtils(request);
+        printEtc(request);
 
     }
 
+    //start line 정보
     private void printStartLine(HttpServletRequest request) {
         System.out.println("--- REQUEST-LINE - start ---");
         System.out.println("request.getMethod() = " + request.getMethod()); //GET
@@ -88,6 +90,28 @@ public class RequestHeaderServlet extends HttpServlet {
         System.out.println("request.getCharacterEncoding() = " +
                 request.getCharacterEncoding());
         System.out.println("--- Header 편의 조회 end ---");
+        System.out.println();
+    }
+
+    //기타 정보
+    private void printEtc(HttpServletRequest request) {
+        System.out.println("--- 기타 조회 start ---");
+        System.out.println("[Remote 정보]");
+        System.out.println("request.getRemoteHost() = " +
+                request.getRemoteHost()); //
+        System.out.println("request.getRemoteAddr() = " +
+                request.getRemoteAddr()); //
+        System.out.println("request.getRemotePort() = " +
+                request.getRemotePort()); //
+        System.out.println();
+        System.out.println("[Local 정보]");
+        System.out.println("request.getLocalName() = " +
+                request.getLocalName()); //
+        System.out.println("request.getLocalAddr() = " +
+                request.getLocalAddr()); //
+        System.out.println("request.getLocalPort() = " +
+                request.getLocalPort()); //
+        System.out.println("--- 기타 조회 end ---");
         System.out.println();
     }
 }

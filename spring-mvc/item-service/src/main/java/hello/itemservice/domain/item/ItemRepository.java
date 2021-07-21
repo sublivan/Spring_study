@@ -30,7 +30,7 @@ public class ItemRepository {
         return new ArrayList<>(store.values());
     }
 
-    //프로젝트 규모가커지면 UpataParamDto같은 upate용 클래스를 만들어서 사용하는게 좋다다
+    //프로젝트 규모가커지면 UpataParamDto 데이터 클래스를 만들어서 사용하는게 좋다
    public void update(long itemId, Item updateParam) {
         Item findItem = findById(itemId);
         findItem.setItemName(updateParam.getItemName());

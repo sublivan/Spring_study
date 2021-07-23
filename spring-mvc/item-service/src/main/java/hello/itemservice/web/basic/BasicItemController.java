@@ -17,6 +17,9 @@ public class BasicItemController {
 
     private final ItemRepository itemRepository;
 
+    /**
+     * 상품 리스트 조회
+     * */
     @GetMapping
     public String items(Model model) {
         List<Item> items = itemRepository.findAll();
@@ -25,6 +28,9 @@ public class BasicItemController {
         return "basic/items";
     }
 
+    /**
+     * 상품 정보 조회
+     * */
     @GetMapping("/{itemId}")
     public String item(@PathVariable Long itemId, Model model) {
         Item item = itemRepository.findById(itemId);
@@ -33,6 +39,9 @@ public class BasicItemController {
         return "basic/item";
     }
 
+    /**
+    * 상품 등록
+    * */
     @GetMapping("/add")
     public String addForm() {
         return "basic/addForm";
@@ -84,12 +93,22 @@ public class BasicItemController {
      * @ModelAttribute 자체 생략 가능
      * model.addAttribute(item) 자동 추가
      */
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV4(Item item) {
         itemRepository.save(item);
         return "basic/item";
     }
 
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/items/" + item.getId();
+    }
+
+
+    /**
+     * 상품 정보 조회 수정
+     * */
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable Long itemId, Model model) {
         Item item = itemRepository.findById(itemId);

@@ -118,7 +118,6 @@ public class BasicItemController {
 
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true); // ?status=true
-        
         return "redirect:/basic/items/{itemId}"; //basic/items/itemId?status=true
     }
 
